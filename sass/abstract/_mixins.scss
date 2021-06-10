@@ -1,0 +1,77 @@
+@mixin clearfix {
+  &::after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// MEDIA QUERY MANAGER
+/*
+0 - 600px = phone
+600 - 900px = Tablet Potrait
+900 - 1200Px = Tablet Landscape
+[1200 - 1800] is where our normal styles apply
+1800px +   = Big Desktop 
+*/
+
+// @mixin respond-phone {
+//   @media (max-width: 600px) {
+//     @content;
+//   }
+// }
+
+/*
+$breakpoint argument choices : 
+- phone
+- tab-port
+- tab-land
+- big-desktop
+*/
+
+/*
+@content digunakan untuk mengirim 
+style ke dalam media query.
+
+
+ORDER : Base + Typography > general layout + grid > page layout > components
+
+1em = 16px
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      //600 * 16
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      //900 * 16
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      //1200 * 16
+      @content;
+    }
+  }
+
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      //1800 * 16
+      @content;
+    }
+  }
+}
