@@ -19,6 +19,7 @@
   &__logo {
     width: 7rem;
     height: auto;
+    object-fit: cover;
 
     @include respond(tab-port) {
       width: 6rem;
